@@ -21,12 +21,15 @@ public class LogActivity extends ActionBarActivity {
             case R.id.My_wishlist:
                 Intent intent_wishlist = new Intent("com.litreily.WishlistActivity");
                 startActivity(intent_wishlist);
+                break;
             case R.id.my_footprints:
                 Intent intent_myfootprints = new Intent("com.litreily.Myfootprints");
                 startActivity(intent_myfootprints);
+                break;
             case R.id.pop_footprints:
                 Intent intent_popfootprints = new Intent("com.litreily.PopActivity");
                 startActivity(intent_popfootprints);
+                break;
         }
     }
 }

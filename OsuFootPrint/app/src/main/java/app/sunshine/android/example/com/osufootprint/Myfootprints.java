@@ -25,6 +25,7 @@ public class Myfootprints extends ActionBarActivity {
             case R.id.back_footprints:
                 Intent intent_logmenu = new Intent("com.litreily.LogActivity");
                 startActivity(intent_logmenu);
+                break;
         }
     }
 }

@@ -26,6 +26,7 @@ public class WishlistActivity extends ActionBarActivity {
             case R.id.back_wishlist:
                 Intent intent_logmenu = new Intent("com.litreily.LogActivity");
                 startActivity(intent_logmenu);
+                break;
         }
     }
 }

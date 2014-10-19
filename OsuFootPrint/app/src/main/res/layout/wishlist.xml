@@ -44,7 +44,7 @@
         android:text="wishlist3"
         android:onClick="onClick"
         android:layout_marginTop="57dp"
-        android:id="@+id/button"
+        android:id="@+id/test_log"
         android:layout_below="@+id/My_wishlist"
         android:layout_centerHorizontal="true" />
 

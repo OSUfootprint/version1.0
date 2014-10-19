@@ -18,36 +18,50 @@
         </activity>
         <activity
             android:name=".LogActivity"
-            android:label="LogActivity">
+            android:label="LogActivity" >
             <intent-filter>
-                <action android:name="com.litreily.LogActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.litreily.LogActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Myfootprints"
-            android:label="Myfootprints">
+            android:label="Myfootprints" >
             <intent-filter>
-                <action android:name="com.litreily.Myfootprints"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.litreily.Myfootprints" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".WishlistActivity"
-            android:label="WishListActivity">
+            android:label="WishListActivity" >
             <intent-filter>
-                <action android:name="com.litreily.WishlistActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.litreily.WishlistActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".PopActivity"
-            android:label="PopActivity">
+            android:label="PopActivity" >
             <intent-filter>
-                <action android:name="com.litreily.PopActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.litreily.PopActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewAccount"
+            android:label="@string/title_activity_new_account" >
+            <intent-filter>
+                <action android:name="com.litreily.NewAccountActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

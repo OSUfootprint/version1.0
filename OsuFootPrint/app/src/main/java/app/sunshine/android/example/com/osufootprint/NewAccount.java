@@ -1,12 +1,10 @@
 package app.sunshine.android.example.com.osufootprint;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,15 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import app.sunshine.android.example.com.osufootprint.R;
 
+public class NewAccount extends ActionBarActivity {
 
-public class MainActivity extends ActionBarActivity {
-    private final String TAG = ((Object) this).getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "HAHA");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_new_account);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
@@ -32,24 +29,21 @@ public class MainActivity extends ActionBarActivity {
 
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.Login_main:
-                Intent intent_logmenu = new Intent("com.litreily.LogActivity");
-                startActivity(intent_logmenu);
-                Log.e(TAG, "HAHA");
+            case R.id.create_user_button:
+                Intent intent_create_user = new Intent("com.litreily.LogActivity");
+                startActivity(intent_create_user);
                 break;
-            case R.id.new_user_button:
-                Intent intent_new_user = new Intent("com.litreily.NewAccountActivity");
-                startActivity(intent_new_user);
-                Log.e(TAG, "HAHA");
+            case R.id.cancel_button:
+                Intent intent_cancel_to_main = new Intent("android.intent.action.MAIN");
+                startActivity(intent_cancel_to_main);
                 break;
-
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.new_account, menu);
         return true;
     }
 
@@ -76,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_new_account, container, false);
             return rootView;
         }
     }

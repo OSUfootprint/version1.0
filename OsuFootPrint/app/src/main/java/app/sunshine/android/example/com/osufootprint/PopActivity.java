@@ -26,6 +26,7 @@ public class PopActivity extends ActionBarActivity {
             case R.id.back_pop:
                 Intent intent_logmenu = new Intent("com.litreily.LogActivity");
                 startActivity(intent_logmenu);
+                break;
         }
     }
 }
