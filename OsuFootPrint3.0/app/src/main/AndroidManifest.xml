@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.sunshine.android.example.com.osufootprint20" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.Main" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.LogActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyFootprint"
+            android:label="@string/title_activity_my_footprint"
+            android:parentActivityName=".LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.LoginActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MyfootprintActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewAccounts"
+            android:label="@string/title_activity_new_accounts"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.Main" />
+            <intent-filter>
+                <action android:name="android.intent.action.NewAccountActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PopActivities"
+            android:label="@string/title_activity_pop_activities"
+            android:parentActivityName=".LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.LoginActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.PopfootprintActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyWishlist"
+            android:label="@string/title_activity_my_wishlist"
+            android:parentActivityName=".LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.LoginActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.MywishlistActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
