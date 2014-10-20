@@ -9,38 +9,26 @@ import android.view.View;
 
 import app.sunshine.android.example.com.osufootprint20.R;
 
-public class LogActivity extends ActionBarActivity {
+public class MyFootprint extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
+        setContentView(R.layout.activity_my_footprint);
     }
+
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.My_wishlist:
-                Intent intent_wishlist = new Intent("android.intent.action.MywishlistActivity");
-                startActivity(intent_wishlist);
-                break;
-            case R.id.my_footprints:
-                Intent intent_myfootprints = new Intent("android.intent.action.MyfootprintActivity");
-                startActivity(intent_myfootprints);
-                break;
-            case R.id.pop_footprints:
-                Intent intent_popfootprints = new Intent("android.intent.action.PopfootprintActivity");
-                startActivity(intent_popfootprints);
-                break;
-            case R.id.log_out:
-                Intent intent_menu = new Intent("android.intent.action.MAIN");
-                startActivity(intent_menu);
+            case R.id.back_footprints:
+                Intent intent_logmenu = new Intent("android.intent.action.LogActivity");
+                startActivity(intent_logmenu);
                 break;
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.log, menu);
+        getMenuInflater().inflate(R.menu.my_footprint, menu);
         return true;
     }
 

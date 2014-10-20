@@ -9,18 +9,30 @@ import android.view.View;
 
 import app.sunshine.android.example.com.osufootprint20.R;
 
-public class PopActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop);
+        setContentView(R.layout.activity_login);
     }
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.back_pop:
-                Intent intent_logmenu = new Intent("android.intent.action.LogActivity");
-                startActivity(intent_logmenu);
+            case R.id.My_wishlist:
+                Intent intent_wishlist = new Intent("android.intent.action.MywishlistActivity");
+                startActivity(intent_wishlist);
+                break;
+            case R.id.my_footprints:
+                Intent intent_myfootprints = new Intent("android.intent.action.MyfootprintActivity");
+                startActivity(intent_myfootprints);
+                break;
+            case R.id.pop_footprints:
+                Intent intent_popfootprints = new Intent("android.intent.action.PopfootprintActivity");
+                startActivity(intent_popfootprints);
+                break;
+            case R.id.log_out:
+                Intent intent_menu = new Intent("android.intent.action.MAIN");
+                startActivity(intent_menu);
                 break;
         }
     }
@@ -28,7 +40,7 @@ public class PopActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.pop, menu);
+        getMenuInflater().inflate(R.menu.login, menu);
         return true;
     }
 

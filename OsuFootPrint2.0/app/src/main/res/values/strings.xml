@@ -19,5 +19,10 @@
     <string name="title_activity_myfootprints">Myfootprints</string>
     <string name="title_activity_pop">PopActivity</string>
     <string name="title_activity_wishlist">WishlistActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_my_footprint">MyFootprint</string>
+    <string name="title_activity_new_accounts">NewAccounts</string>
+    <string name="title_activity_pop_activities">PopActivities</string>
+    <string name="title_activity_my_wishlist">MyWishlist</string>
 
 </resources>

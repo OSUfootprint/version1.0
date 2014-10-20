@@ -9,26 +9,30 @@ import android.view.View;
 
 import app.sunshine.android.example.com.osufootprint20.R;
 
-public class WishlistActivity extends ActionBarActivity {
+public class NewAccounts extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wishlist);
+        setContentView(R.layout.activity_new_accounts);
     }
+
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.back_wishlist:
-                Intent intent_logmenu = new Intent("android.intent.action.LogActivity");
-                startActivity(intent_logmenu);
+            case R.id.create_user_button:
+                Intent intent_create_user = new Intent("android.intent.action.LogActivity");
+                startActivity(intent_create_user);
+                break;
+            case R.id.cancel_button:
+                Intent intent_cancel_to_main = new Intent("android.intent.action.MAIN");
+                startActivity(intent_cancel_to_main);
                 break;
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.wishlist, menu);
+        getMenuInflater().inflate(R.menu.new_accounts, menu);
         return true;
     }
 
