@@ -3,6 +3,7 @@ package app.sunshine.android.example.com.osufootprint20;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,11 +12,27 @@ import app.sunshine.android.example.com.osufootprint20.R;
 
 public class LoginActivity extends ActionBarActivity {
 
+    private final String TAG = ((Object) this).getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "++LoginActivity created++");
         setContentView(R.layout.activity_login);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "++LoginActivity started++");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG,"++LoginActivity resumed++");
+    }
+
     public void onClick(View view){
         switch (view.getId()){
             case R.id.My_wishlist:
@@ -55,4 +72,23 @@ public class LoginActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"++LoginActivity paused++");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"++LoginActivity stopped++");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"++LoginActivity destroyed++");
+    }
+
 }

@@ -43,6 +43,12 @@ public class Main extends ActionBarActivity {
                 startActivity(intent_new_user);
 
                 break;
+            case R.id.map_test:
+                Intent intent_map_test = new Intent("android.intent.action.FootprintMap");
+                startActivity(intent_map_test);
+
+                break;
+
 
         }
     }

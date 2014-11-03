@@ -11,11 +11,24 @@ import android.view.View;
 
 public class Main extends ActionBarActivity {
     private final String TAG = ((Object) this).getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "++oncreate1234");
+        Log.e(TAG, "++Main created++");
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG,"++Main started++");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG,"++Main resumed++");
     }
 
     public void onClick(View view){
@@ -50,5 +63,23 @@ public class Main extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"++Main paused++");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"++Main stopped++");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"++Main destroyed++");
     }
 }

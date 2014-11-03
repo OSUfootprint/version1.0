@@ -3,6 +3,7 @@ package app.sunshine.android.example.com.osufootprint20;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,11 +11,25 @@ import android.view.View;
 import app.sunshine.android.example.com.osufootprint20.R;
 
 public class PopActivities extends ActionBarActivity {
+    private final String TAG = ((Object) this).getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "++PopActivities created++");
         setContentView(R.layout.activity_pop_activities);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG,"++PopActivities started++");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG,"++PopActivities resumed++");
     }
 
     public void onClick(View view){
@@ -42,5 +57,23 @@ public class PopActivities extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG,"++PopActivities paused++");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG,"++PopActivities stopped++");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG,"++PopActivities destroyed++");
     }
 }
