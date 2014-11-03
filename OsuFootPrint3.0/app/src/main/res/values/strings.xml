@@ -24,5 +24,6 @@
     <string name="title_activity_new_accounts">NewAccounts</string>
     <string name="title_activity_pop_activities">PopActivities</string>
     <string name="title_activity_my_wishlist">MyWishlist</string>
+    <string name="title_activity_database_helper">DatabaseHelper</string>
 
 </resources>

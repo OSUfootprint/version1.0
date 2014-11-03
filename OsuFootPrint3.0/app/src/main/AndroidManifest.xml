@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -52,8 +51,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.sunshine.android.example.com.osufootprint20.Main" />
+
             <intent-filter>
                 <action android:name="android.intent.action.NewAccountActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -64,8 +65,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.sunshine.android.example.com.osufootprint20.LoginActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.PopfootprintActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -76,8 +79,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.sunshine.android.example.com.osufootprint20.LoginActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MywishlistActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
