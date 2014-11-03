@@ -178,7 +178,7 @@ public class
         mThompson = mMap.addMarker(new MarkerOptions()
                 .position(THOMPSON)
                 .title("Thompson Library")
-                .snippet("Date: Oct.")
+                .snippet("Date: Oct.23, 2014")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
                 .infoWindowAnchor(0.5f, 0.5f));
 
@@ -186,18 +186,18 @@ public class
         mShoe = mMap.addMarker(new MarkerOptions()
                 .position(SHOE)
                 .title("OSU Stadium")
-                .snippet("Population: 4,137,400"));
+                .snippet("Date: Oct.26, 2014"));
 
         // A few more markers for good measure.
         mTuttle = mMap.addMarker(new MarkerOptions()
                 .position(TUTTLE)
                 .title("Tuttle Park")
-                .snippet("Population: 1,738,800"));
+                .snippet("Date: Nov.1, 2014"));
 
         mMedical = mMap.addMarker(new MarkerOptions()
                 .position(MEDICAL)
                 .title("OSU Medical Center")
-                .snippet("Population: 1,213,000"));
+                .snippet("Date: Nov.2, 2014"));
     }
 
     //
