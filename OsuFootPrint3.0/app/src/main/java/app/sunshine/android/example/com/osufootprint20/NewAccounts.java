@@ -24,7 +24,7 @@ public class NewAccounts extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "++NewAccounts created++");
+        //Log.e(TAG, "++NewAccounts created++");
         setContentView(R.layout.activity_new_accounts);
         newUsername = (EditText) findViewById(R.id.new_username);
         newPassword = (EditText) findViewById(R.id.new_password);
@@ -39,7 +39,8 @@ public class NewAccounts extends ActionBarActivity {
         if ((password.equals(confirm)) && (!username.equals(""))
                 && (!password.equals("")) && (!confirm.equals(""))) {
             this.dh = new DatabaseHelper(this);
-            this.dh.insert(username, password);
+            Person person = new Person(username,password);
+            dh.add(person);
             // this.labResult.setText("Added");
             Toast.makeText(NewAccounts.this, "new record inserted",
                     Toast.LENGTH_SHORT).show();

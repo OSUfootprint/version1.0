@@ -16,27 +16,59 @@ import java.util.List;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "Footprint.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Accounts";
+    private static final String TABLE_NAME = "tbl_footprint";
     private Context context;
     private SQLiteDatabase db;
-    private SQLiteStatement insertStmt;
-    private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
-    private static  final String DICTIONARY_TABLE_CREATE = "CREATE TABLE" + TABLE_NAME + " (" + KEY_WORD +
-            "TEXT, " + KEY_DEFINITION + " TEXT);";
+    //private SQLiteStatement insertStmt;
+    //private static final String INSERT = "insert into " + TABLE_NAME + "(name, password) values (?, ?)" ;
+    //private static  final String DICTIONARY_TABLE_CREATE = "CREATE TABLE" + TABLE_NAME + " (" + KEY_WORD +
+    //        "TEXT, " + KEY_DEFINITION + " TEXT);";
 
     public DatabaseHelper(Context context){
         this.context = context;
         FootprintOpenHelper openHelper = new FootprintOpenHelper(this.context);
         this.db = openHelper.getWritableDatabase();
-        this.insertStmt = this.db.compileStatement(INSERT);
+        //this.insertStmt = this.db.compileStatement(INSERT);
 
     }
 
-    public long insert(String name, String password){
-        this.insertStmt.bindString(1, name);
-        this.insertStmt.bindString(2, password);
-        return this.insertStmt.executeInsert();
+//    public long insertLogInfo(String name, String password){
+//        this.insertStmt.bindString(1, name);
+//        this.insertStmt.bindString(2, password);
+//        return this.insertStmt.executeInsert();
+//    }
+    public void add(Person person){
+        db.execSQL("insert into tbl_footprint(null, ?, ?)",new Object[]{person.getName(), person.getPassword()});
     }
+    public void delete(String name){
+        db.execSQL("delete from tbl_footprint where name=?", new Object[]{name});
+    }
+    public Person queryOne(String name){
+        Person person = new Person();
+        Cursor c = db.rawQuery("select * from tbl_person where name=?", new String[] { name + "" });
+        while (c.moveToNext()) {
+            //person.set_id(c.getInt(c.getColumnIndex("_id")));
+            person.setName(c.getString(c.getColumnIndex("name")));
+            person.setPassword(c.getString(c.getColumnIndex("password")));
+        }
+        c.close();
+        return person;
+    }
+    public List<Person> queryMany() {
+        ArrayList<Person> persons = new ArrayList<Person>();
+        Cursor c = db.rawQuery("select * from tbl_person", null);
+        while (c.moveToNext()) {
+            Person person = new Person();
+            //person.set_id(c.getInt(c.getColumnIndex("_id")));
+            person.setName(c.getString(c.getColumnIndex("name")));
+            person.setPassword(c.getString(c.getColumnIndex("password")));
+            persons.add(person);
+        }
+        c.close();
+        return persons;
+    }
+
+
     public void deleteAll(){
         this.db.delete(TABLE_NAME,null, null);
     }
@@ -54,6 +86,8 @@ public class DatabaseHelper {
         }
         return list;
     }
+
+
 
     private static class FootprintOpenHelper extends SQLiteOpenHelper{
         FootprintOpenHelper(Context context){
@@ -74,3 +108,4 @@ public class DatabaseHelper {
         }
     }
 }
+

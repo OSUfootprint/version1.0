@@ -11,25 +11,28 @@ import android.view.View;
 import app.sunshine.android.example.com.osufootprint20.R;
 
 public class MyFootprint extends ActionBarActivity {
-    private final String TAG = ((Object) this).getClass().getSimpleName();
+    //private final String TAG = ((Object) this).getClass().getSimpleName();
+    private DatabaseHelper dbmanager;
+    private String LogUsername;
+    private String Logpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "++MyFootprint created++");
+        //Log.e(TAG, "++MyFootprint created++");
         setContentView(R.layout.activity_my_footprint);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e(TAG,"++MyFootprint started++");
+        //Log.e(TAG,"++MyFootprint started++");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG,"++MyFootprint resumed++");
+        //Log.e(TAG,"++MyFootprint resumed++");
     }
 
     public void onClick(View view){
@@ -62,18 +65,18 @@ public class MyFootprint extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e(TAG,"++MyFootprint paused++");
+        //Log.e(TAG,"++MyFootprint paused++");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(TAG,"++MyFootprint stopped++");
+        //Log.e(TAG,"++MyFootprint stopped++");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(TAG,"++MyFootprint destroyed++");
+        //Log.e(TAG,"++MyFootprint destroyed++");
     }
 }
