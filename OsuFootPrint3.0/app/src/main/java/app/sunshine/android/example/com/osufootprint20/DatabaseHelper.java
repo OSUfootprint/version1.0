@@ -50,6 +50,7 @@ public class DatabaseHelper {
             //person.set_id(c.getInt(c.getColumnIndex("_id")));
             person.setName(c.getString(c.getColumnIndex("name")));
             person.setPassword(c.getString(c.getColumnIndex("password")));
+            //person.setFootprints(c.g(c.getColumnIndex("footprints"));
         }
         c.close();
         return person;

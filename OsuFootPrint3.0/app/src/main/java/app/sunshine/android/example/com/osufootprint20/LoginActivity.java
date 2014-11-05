@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import app.sunshine.android.example.com.osufootprint20.R;
 
 public class LoginActivity extends ActionBarActivity {
@@ -17,7 +20,16 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "++LoginActivity created++");
+        //Log.e(TAG, "++LoginActivity created++");
+        Bundle bundle = this.getIntent().getExtras();
+        String username = bundle.getString("username");
+        ArrayList footprint_list = bundle.getParcelableArrayList("foorprint_list");
+        ArrayList wish_list = bundle.getParcelableArrayList("wish_list");
+        Person user = new Person();
+        user.setFootprints((ArrayList<Footprints>)footprint_list.get(0));
+        user.setWishlists((ArrayList<Wishlists>)wish_list.get(0));
+        user.setName(username);
+
         setContentView(R.layout.activity_login);
     }
 

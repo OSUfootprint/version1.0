@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,7 +49,17 @@ public class Main extends ActionBarActivity {
         this.dh = new DatabaseHelper(this);
         List<String> names = this.dh.selectAll(username, password);
         if(names.size() > 0){
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(Main.this, LoginActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("username",username);
+            ArrayList footprint_list = new ArrayList();
+            ArrayList wish_list = new ArrayList();
+            footprint_list.add(this.dh.queryOne(username).show_myfoorprints());
+            wish_list.add(this.dh.queryOne(username).show_mywishlists());
+            bundle.putParcelableArrayList("foorprint_list",footprint_list);
+            bundle.putParcelableArrayList("wish_list",wish_list);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }else{
             // Try again?
             new AlertDialog.Builder(this)

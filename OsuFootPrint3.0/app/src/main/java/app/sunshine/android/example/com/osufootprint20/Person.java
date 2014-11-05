@@ -38,8 +38,10 @@ public class Person {
     public List<Footprints>show_myfoorprints(){
         return footprints;
     }
+    public void setFootprints(List<Footprints> footprints){ this.footprints = footprints;}
     public List<Wishlists>show_mywishlists(){
         return wishlists;
     }
+    public void setWishlists(List<Wishlists> wishlists){ this.wishlists = wishlists;}
 
 }
