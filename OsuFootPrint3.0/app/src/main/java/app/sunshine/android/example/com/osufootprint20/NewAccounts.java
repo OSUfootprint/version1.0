@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import app.sunshine.android.example.com.osufootprint20.R;
 
 public class NewAccounts extends ActionBarActivity {
@@ -44,7 +46,17 @@ public class NewAccounts extends ActionBarActivity {
             // this.labResult.setText("Added");
             Toast.makeText(NewAccounts.this, "new record inserted",
                     Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
+            Intent intent = new Intent(NewAccounts.this, LoginActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("username",username);
+//            ArrayList footprint_list = new ArrayList();
+//            ArrayList wish_list = new ArrayList();
+//            footprint_list.add(this.dh.queryOne(username).show_myfoorprints());
+//            wish_list.add(this.dh.queryOne(username).show_mywishlists());
+//            bundle.putParcelableArrayList("foorprint_list",footprint_list);
+//            bundle.putParcelableArrayList("wish_list",wish_list);
+            intent.putExtras(bundle);
+            startActivity(intent);
             finish();
         } else if ((username.equals("")) || (password.equals(""))
                 || (confirm.equals(""))) {

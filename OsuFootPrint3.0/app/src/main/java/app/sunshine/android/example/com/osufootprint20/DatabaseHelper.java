@@ -16,7 +16,7 @@ import java.util.List;
 public class DatabaseHelper {
     private static final String DATABASE_NAME = "Footprint.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "tbl_footprint";
+    private static final String TABLE_NAME = "Account";
     private Context context;
     private SQLiteDatabase db;
     //private SQLiteStatement insertStmt;
@@ -38,14 +38,14 @@ public class DatabaseHelper {
 //        return this.insertStmt.executeInsert();
 //    }
     public void add(Person person){
-        db.execSQL("insert into tbl_footprint(null, ?, ?)",new Object[]{person.getName(), person.getPassword()});
+        db.execSQL("insert into Account VALUES (null, ?, ?)",new Object[]{person.getName(), person.getPassword()});
     }
     public void delete(String name){
-        db.execSQL("delete from tbl_footprint where name=?", new Object[]{name});
+        db.execSQL("delete from Account where name=?", new Object[]{name});
     }
     public Person queryOne(String name){
         Person person = new Person();
-        Cursor c = db.rawQuery("select * from tbl_person where name=?", new String[] { name + "" });
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
         while (c.moveToNext()) {
             //person.set_id(c.getInt(c.getColumnIndex("_id")));
             person.setName(c.getString(c.getColumnIndex("name")));
@@ -57,7 +57,7 @@ public class DatabaseHelper {
     }
     public List<Person> queryMany() {
         ArrayList<Person> persons = new ArrayList<Person>();
-        Cursor c = db.rawQuery("select * from tbl_person", null);
+        Cursor c = db.rawQuery("select * from Account", null);
         while (c.moveToNext()) {
             Person person = new Person();
             //person.set_id(c.getInt(c.getColumnIndex("_id")));
@@ -97,7 +97,8 @@ public class DatabaseHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db){
-            db.execSQL("CREATE TABLE" + TABLE_NAME + "(id INTEGER PRIMARY KEY, name TEXT, password TEXT)");
+            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, name text, password text)";
+            db.execSQL(createtbl);
         }
 
         @Override

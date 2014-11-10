@@ -6,8 +6,18 @@ import java.util.Date;
  * Created by Vincent on 14/11/3.
  */
 public class Footprints {
-    Date date;
+    String date;
     String place;
     String done;
+    public Footprints(String date, String p, String d){
+        this.date = date;
+        this.place = p;
+        this.done = d;
+    }
+    public Footprints(){
+        this.date = "2010-1-1";
+        this.place = "dl";
+        this.done = "fuck";
+    }
 
 }

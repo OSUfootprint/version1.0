@@ -35,11 +35,19 @@ public class MyFootprint extends ActionBarActivity {
         //Log.e(TAG,"++MyFootprint resumed++");
     }
 
+    public void addFootprint(){
+
+    }
+
+    //public void refreshFootprint(){
+
+    //}
+
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.back_footprints:
-                Intent intent_logmenu = new Intent("android.intent.action.LogActivity");
-                startActivity(intent_logmenu);
+            case R.id.add_footprint:
+                addFootprint();
+                //refreshFootprint();
                 break;
         }
     }
