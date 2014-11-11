@@ -60,7 +60,7 @@ public class Footprint implements Comparable{
     @Override
     public int compareTo(Object s) {
         Footprint fp=(Footprint) s;
-        return mDate.compareTo(fp.getDate());
+        return -mDate.compareTo(fp.getDate());
     }
 
     @Override

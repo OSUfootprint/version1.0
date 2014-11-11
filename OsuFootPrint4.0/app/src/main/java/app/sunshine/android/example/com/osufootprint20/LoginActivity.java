@@ -7,18 +7,36 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import app.sunshine.android.example.com.osufootprint20.R;
 
 public class LoginActivity extends ActionBarActivity {
 
     private final String TAG = ((Object) this).getClass().getSimpleName();
+    private TextView welcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "++LoginActivity created++");
+        Bundle bundle = this.getIntent().getExtras();
+        String username = bundle.getString("username");
+//        ArrayList footprint_list = bundle.getParcelableArrayList("foorprint_list");
+//        ArrayList wish_list = bundle.getParcelableArrayList("wish_list");
+//        Person user = new Person();
+//        user.setFootprints((ArrayList<Footprints>)footprint_list.get(0));
+//        user.setWishlists((ArrayList<Wishlists>)wish_list.get(0));
+//        user.setName(username);
+          Toast.makeText(LoginActivity.this, "Welcome " + username + "!",
+                Toast.LENGTH_SHORT).show();
+
+
+
         setContentView(R.layout.activity_login);
+//        welcome = (TextView) findViewById(R.id.welcome);
+//        welcome.setText("Welcome "+ username + "!");
     }
 
     @Override

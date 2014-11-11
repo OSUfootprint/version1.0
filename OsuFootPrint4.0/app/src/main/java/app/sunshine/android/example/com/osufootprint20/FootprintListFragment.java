@@ -19,20 +19,30 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class FootprintListFragment extends ListFragment {
+    public static final String PLACE_NAME="app.sunshine.android.example.com.osufootprint20.place_name";
 
-    private PriorityQueue mySet;
+    private PriorityQueue mfq;
     private ArrayList mFootprints;
+    private String mPlaceName;
+
+    public static FootprintListFragment newInstance(String placeName) {
+        Bundle args = new Bundle();
+        args.putString(PLACE_NAME,placeName);
+        FootprintListFragment fragment = new FootprintListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.footprints_title);
-        mySet=new PriorityQueue(FootprintQueue.get(getActivity()).getMySet());
+        mPlaceName=getArguments().getString(PLACE_NAME);
+        mfq=new PriorityQueue(Person.getPerson(getActivity().getApplicationContext()).getFootprint().getMySet());
         mFootprints=new ArrayList();
-        while(mySet.size()>0) {
+        while(mfq.size()>0) {
             Footprint fp= new Footprint();
-            fp=(Footprint)mySet.poll();
-            if(fp!=null) {
+            fp=(Footprint)mfq.poll();
+            if(fp!=null&&fp.getPlace().equals(mPlaceName)) {
                 mFootprints.add(fp);
             }
         }
@@ -68,7 +78,6 @@ public class FootprintListFragment extends ListFragment {
             TextView activityText=(TextView) convertView.findViewById(R.id.footprint_list_item_activity);
             activityText.setText(c.getActivity());
             TextView dateText=(TextView) convertView.findViewById(R.id.footprint_list_item_date);
-
             dateText.setText(sdf.format(c.getDate()));
             return convertView;
         }

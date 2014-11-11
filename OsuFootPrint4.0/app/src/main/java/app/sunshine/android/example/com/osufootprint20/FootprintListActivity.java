@@ -18,7 +18,8 @@ public class FootprintListActivity extends FragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.listContainer);
         if (fragment == null) {
-            fragment = new FootprintListFragment();
+            String placeName=getIntent().getStringExtra(FootprintListFragment.PLACE_NAME);
+            fragment=FootprintListFragment.newInstance(placeName);
             fm.beginTransaction()
                     .add(R.id.listContainer, fragment)
                     .commit();

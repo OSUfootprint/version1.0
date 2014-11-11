@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 
 /**
@@ -38,26 +39,11 @@ public class
         implements
         GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener {
-    private static MyPlaceQueue pq;
-    private static final LatLng DREASE = new LatLng(40.002257134, -83.015840873);
-    private static final LatLng THOMPSON = new LatLng(39.999223928, -83.0149433389306);
-    private static final LatLng SHOE = new LatLng(40.002473382, -83.019639887);
-    private static final LatLng TUTTLE = new LatLng(40.012186920, -83.01550258);
-    private static final LatLng MEDICAL = new LatLng(40.00099584, -83.03252656);
+    private PriorityQueue mpq;
 
     /** Demonstrates customizing the info window and/or its contents. */
     private void init() {
-        pq = new MyPlaceQueue();
-        MyPlace pDREASE = new MyPlace("Drease Lab",DREASE,20);
-        pq.insert(pDREASE);
-        MyPlace pTHOMPSON = new MyPlace("Thompson Library",THOMPSON,15);
-        pq.insert(pTHOMPSON);
-        MyPlace pSHOE = new MyPlace("OSU Stadium",SHOE,2);
-        pq.insert(pSHOE);
-        MyPlace pTUTTLE = new MyPlace("Tuttle Park",TUTTLE,2);
-        pq.insert(pTUTTLE);
-        MyPlace pMEDICAL = new MyPlace("OSU Medical Center", MEDICAL,1);
-        pq.insert(pMEDICAL);
+        mpq = new PriorityQueue(Person.getPerson(getApplicationContext()).getMyPlace().getMySet());
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
@@ -183,11 +169,11 @@ public class
 
     private void addMarkersToMap() {
         mMarker=new ArrayList<Marker>();
-        int i=0,last=0,length=pq.size();
+        int i=0,last=0,length=mpq.size();
         float rate=0;
         while(i<length) {
             MyPlace mp = new MyPlace();
-            mp = pq.getNext();
+            mp = (MyPlace)mpq.poll();
             if(mp.getTimes()!=last) {
                 rate = (float) (i + 1) / (float) (length+1);
                 last = mp.getTimes();
@@ -268,6 +254,7 @@ public class
     @Override
     public void onInfoWindowClick(Marker marker) {
         Intent intent_footprint_list = new Intent("android.intent.action.FootprintList");
+        intent_footprint_list.putExtra(FootprintListFragment.PLACE_NAME,marker.getTitle());
         startActivity(intent_footprint_list);
     }
 

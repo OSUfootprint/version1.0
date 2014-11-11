@@ -14,9 +14,7 @@ public class FootprintQueue {
 
 
     private static FootprintQueue mFootprintQueue;
-    private Context mAppContext;
-    private FootprintQueue(Context appContext) {
-        mAppContext = appContext;
+    public FootprintQueue() {
         mySet=new PriorityQueue<Footprint>();
         mySet.add(new Footprint("Drease Lab", "2014-11-02", "D1", "1"));
         mySet.add(new Footprint("Drease Lab","2014-10-31","D2","2"));
@@ -27,15 +25,13 @@ public class FootprintQueue {
         mySet.add(new Footprint("Thompson Library","2014-10-22","T2","7"));
         mySet.add(new Footprint("Thompson Library","2014-10-13","T3","8"));
         mySet.add(new Footprint("Thompson Library","2014-10-10","T4","9"));
-        mySet.add(new Footprint("OSU Stadium","2014-10-25","O1","10"));
-        mySet.add(new Footprint("OSU Stadium","2014-10-09","O2","11"));
-        mySet.add(new Footprint("OSU Stadium","2014-10-04","O3","12"));
-    }
-    public static FootprintQueue get(Context c) {
-        if (mFootprintQueue == null) {
-            mFootprintQueue = new FootprintQueue(c.getApplicationContext());
-        }
-        return mFootprintQueue;
+        mySet.add(new Footprint("OSU Stadium","2014-10-25","S1","10"));
+        mySet.add(new Footprint("OSU Stadium","2014-10-09","S2","11"));
+        mySet.add(new Footprint("OSU Stadium","2014-10-04","S3","12"));
+        mySet.add(new Footprint("Tuttle Park","2014-10-18","T1","13"));
+        mySet.add(new Footprint("Tuttle Park","2014-10-02","T2","14"));
+        mySet.add(new Footprint("OSU Medical Center","2014-10-28","M1","15"));
+        mySet.add(new Footprint("OSU Medical Center","2014-9-20","M2","16"));
     }
 
     public PriorityQueue getMySet() {

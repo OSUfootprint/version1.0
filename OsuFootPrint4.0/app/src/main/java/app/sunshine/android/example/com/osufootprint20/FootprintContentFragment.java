@@ -37,7 +37,7 @@ public class FootprintContentFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID footprintID = (UUID)getArguments().getSerializable(FOOTPRINT_ID);
-        fp=FootprintQueue.get(getActivity()).getByID(footprintID);
+        fp=Person.getPerson(getActivity().getApplicationContext()).getFootprint().getByID(footprintID);
 
     }
     @Override
