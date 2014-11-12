@@ -31,6 +31,7 @@ public class NewFootprintFragment extends Fragment {
     EditText newActivityField;
     EditText newCommentField;
     Button confirmButton;
+    Button cameraButton;
 
 
     @Override
@@ -66,6 +67,15 @@ public class NewFootprintFragment extends Fragment {
         });
         newActivityField = (EditText)v.findViewById(R.id.new_footprint_activity);
         newCommentField = (EditText)v.findViewById(R.id.new_footprint_comment);
+        cameraButton = (Button) v.findViewById(R.id.camera);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent take_picture=new Intent("android.intent.action.Take_picture");
+                startActivity(take_picture);
+            }
+        });
+
         confirmButton= (Button)v.findViewById(R.id.new_footprint_confirm);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -164,8 +164,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.sunshine.android.example.com.osufootprint20.NewFootprintActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.SelectPlace" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Camera"
+            android:label="@string/title_activity_camera"
+            android:parentActivityName=".NewFootprintActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="app.sunshine.android.example.com.osufootprint20.NewFootprintActivity" />
+            <intent-filter>
+                <action android:name="android.intent.action.Take_picture" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
