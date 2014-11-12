@@ -2,6 +2,8 @@ package app.sunshine.android.example.com.osufootprint20;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +22,7 @@ import java.util.UUID;
 public class NewFootprintFragment extends Fragment {
 
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_PLACE = 1;
 
     private Footprint fp;
 
@@ -54,13 +57,49 @@ public class NewFootprintFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("E MMM.d yyyy");
         newDateField.setText(sdf.format(fp.getDate()));
         newPlaceField = (Button)v.findViewById(R.id.new_footprint_place);
+        newPlaceField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_select_place=new Intent("android.intent.action.SelectPlace");
+                startActivityForResult(intent_select_place, REQUEST_PLACE);
+            }
+        });
         newActivityField = (EditText)v.findViewById(R.id.new_footprint_activity);
         newCommentField = (EditText)v.findViewById(R.id.new_footprint_comment);
         confirmButton= (Button)v.findViewById(R.id.new_footprint_confirm);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                fp.setActivity(newActivityField.getText().toString());
+                fp.setComment(newCommentField.getText().toString());
+                if(fp.getPlace()==null) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Error")
+                            .setMessage("Please Set the Place")
+                            .setNeutralButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                        }
+                                    }).show();
+                }
+                else if(fp.getActivity()==null) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Error")
+                            .setMessage("Please Type in Your Activity")
+                            .setNeutralButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                        }
+                                    }).show();
+                }
+                else {
+                    Person.getPerson(getActivity().getApplicationContext()).getFootprint().insert(fp);
+                    Person.getPerson(getActivity().getApplicationContext()).getMyPlace().TimesChanged(fp.getPlace());
+
+                    getActivity().finish();
+                }
             }
         });
         return v;
@@ -75,6 +114,12 @@ public class NewFootprintFragment extends Fragment {
             fp.setDate(date);
             SimpleDateFormat sdf = new SimpleDateFormat("E MMM.d yyyy");
             newDateField.setText(sdf.format(fp.getDate()));
+        }
+        else if (requestCode == REQUEST_PLACE) {
+            String place = data
+                    .getStringExtra(SelectPlace.Selected_Place);
+            fp.setPlace(place);
+            newPlaceField.setText(fp.getPlace());
         }
     }
 

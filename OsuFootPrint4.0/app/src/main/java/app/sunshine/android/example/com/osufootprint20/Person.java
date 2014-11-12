@@ -14,20 +14,20 @@ public class Person {
     private String password;
     private FootprintQueue mFootprintQueue;
     private MyPlaceQueue mPlaceQueue;
-    private Context mAppContext;
+    public Context mAppContext;
 
     private static Person mPerson;
 
     public FootprintQueue getFootprint() {
         if (mFootprintQueue == null) {
-            mFootprintQueue = new FootprintQueue();
+            mFootprintQueue = new FootprintQueue(mAppContext);
         }
         return mFootprintQueue;
     }
 
     public MyPlaceQueue getMyPlace() {
         if (mPlaceQueue == null) {
-            mPlaceQueue = new MyPlaceQueue();
+            mPlaceQueue = new MyPlaceQueue(mAppContext);
         }
         return mPlaceQueue;
     }
@@ -43,16 +43,16 @@ public class Person {
         mAppContext=c;
         this.name = "";
         this.password = "";
-        mFootprintQueue=new FootprintQueue();
-        mPlaceQueue=new MyPlaceQueue();
+        mFootprintQueue=new FootprintQueue(mAppContext);
+        mPlaceQueue=new MyPlaceQueue(mAppContext);
     }
     public Person(Context c,String name, String password){
         //this._id = _id;
         mAppContext=c;
         this.name = name;
         this.password = password;
-        mFootprintQueue=new FootprintQueue();
-        mPlaceQueue=new MyPlaceQueue();
+        mFootprintQueue=new FootprintQueue(mAppContext);
+        mPlaceQueue=new MyPlaceQueue(mAppContext);
     }
 
     public int get_id(){

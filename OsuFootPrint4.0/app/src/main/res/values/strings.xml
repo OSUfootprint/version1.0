@@ -32,5 +32,6 @@
     <string name="title_activity_footprint_list">FootprintListActivity</string>
     <string name="footprints_title">FOOTPRINTS</string>
     <string name="title_activity_new_footprint">NewFootprint</string>
+    <string name="title_activity_select_place">SelectPlace</string>
 
 </resources>

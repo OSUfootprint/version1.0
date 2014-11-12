@@ -9,9 +9,11 @@ import java.util.PriorityQueue;
 
 public class MyPlaceQueue {
 
-    private static PriorityQueue mySet;
+    private static PriorityQueue<MyPlace> mySet;
+    private Context mAppContext;
 
-    public MyPlaceQueue() {
+    public MyPlaceQueue(Context c) {
+        mAppContext=c;
         mySet=new PriorityQueue();
         mySet.add(new MyPlace("Drease Lab",new LatLng(40.002257134, -83.015840873),5));
         mySet.add(new MyPlace("Thompson Library",new LatLng(39.999223928, -83.0149433389306),4));
@@ -39,6 +41,17 @@ public class MyPlaceQueue {
             MyPlace o=(MyPlace)mySet.poll();
             return o;
         }
+    }
+
+    public void TimesChanged (String placeName) {
+
+        for (MyPlace mp:mySet) {
+            if (mp.getName().equals(placeName))
+                mp.addTimes();
+                return;
+        }
+        MyPlace newPlace=new MyPlace(placeName,PlaceInfoQueue.get(mAppContext).findLocByName(placeName),1);
+        insert(newPlace);
     }
 }
 

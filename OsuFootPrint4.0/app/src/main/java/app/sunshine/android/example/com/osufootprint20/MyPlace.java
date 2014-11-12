@@ -22,6 +22,7 @@ public class MyPlace implements Comparable{
     public int getTimes() {
         return times;
     }
+    public void addTimes() {times++;}
 
     public MyPlace(String n, LatLng l, int t) {
         name=n;

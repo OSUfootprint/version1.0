@@ -56,6 +56,13 @@ public class Footprint implements Comparable{
     public void setDate(Date date) {
         mDate = date;
     }
+    public void setPlace(String place) {
+        mPlace = place;
+    }
+    public void setComment(String comment) {
+        mComment = comment;
+    }
+
 
     @Override
     public int compareTo(Object s) {

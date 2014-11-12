@@ -21,7 +21,6 @@ import java.util.PriorityQueue;
 public class FootprintListFragment extends ListFragment {
     public static final String PLACE_NAME="app.sunshine.android.example.com.osufootprint20.place_name";
 
-    private PriorityQueue mfq;
     private ArrayList mFootprints;
     private String mPlaceName;
 
@@ -37,17 +36,8 @@ public class FootprintListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPlaceName=getArguments().getString(PLACE_NAME);
-        mfq=new PriorityQueue(Person.getPerson(getActivity().getApplicationContext()).getFootprint().getMySet());
         mFootprints=new ArrayList();
-        while(mfq.size()>0) {
-            Footprint fp= new Footprint();
-            fp=(Footprint)mfq.poll();
-            if(fp!=null&&fp.getPlace().equals(mPlaceName)) {
-                mFootprints.add(fp);
-            }
-        }
-
-
+        mFootprints=Person.getPerson(getActivity().getApplicationContext()).getFootprint().getByPlace(mPlaceName);
         FootprintAdaptor adapter =new FootprintAdaptor(mFootprints);
         setListAdapter(adapter);
     }

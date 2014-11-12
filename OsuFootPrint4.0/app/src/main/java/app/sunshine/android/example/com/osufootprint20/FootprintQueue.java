@@ -11,10 +11,12 @@ import java.util.UUID;
 public class FootprintQueue {
 
     private PriorityQueue<Footprint> mySet;
+    private Context mAppContext;
 
 
     private static FootprintQueue mFootprintQueue;
-    public FootprintQueue() {
+    public FootprintQueue(Context c) {
+        mAppContext=c;
         mySet=new PriorityQueue<Footprint>();
         mySet.add(new Footprint("Drease Lab", "2014-11-02", "D1", "1"));
         mySet.add(new Footprint("Drease Lab","2014-10-31","D2","2"));
@@ -56,12 +58,22 @@ public class FootprintQueue {
 
     public Footprint getByID(UUID id) {
 
-        PriorityQueue<Footprint> pq=new PriorityQueue<Footprint>(mySet);
         for (Footprint fp:mySet) {
             if (fp.getID().equals(id))
                 return fp;
         }
         return null;
+    }
+
+    public ArrayList<Footprint> getByPlace(String place) {
+
+        PriorityQueue<Footprint> PQ=new PriorityQueue<Footprint>(mySet);
+        ArrayList<Footprint> fpList=new ArrayList<Footprint>();
+        for (Footprint fp:PQ) {
+            if (fp.getPlace().equals(place))
+                fpList.add(fp);
+        }
+        return fpList;
     }
 }
 

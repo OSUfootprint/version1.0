@@ -10,6 +10,7 @@ import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.BounceInterpolator;
@@ -129,10 +130,18 @@ public class
         setUpMapIfNeeded();
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
+        Log.e("map","resume");
+        init();
+        int i=0;
+        while(mMarker.size()>0)
+        {
+            mMarker.remove(0).remove();
+        }
+        setUpMap();
     }
 
     private void setUpMapIfNeeded() {
