@@ -46,9 +46,10 @@ public class MyPlaceQueue {
     public void TimesChanged (String placeName) {
 
         for (MyPlace mp:mySet) {
-            if (mp.getName().equals(placeName))
+            if (mp.getName().equals(placeName)) {
                 mp.addTimes();
                 return;
+            }
         }
         MyPlace newPlace=new MyPlace(placeName,PlaceInfoQueue.get(mAppContext).findLocByName(placeName),1);
         insert(newPlace);

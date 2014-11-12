@@ -137,9 +137,11 @@ public class
         Log.e("map","resume");
         init();
         int i=0;
-        while(mMarker.size()>0)
+        int length=mMarker.size();
+        while(i<length)
         {
-            mMarker.remove(0).remove();
+            mMarker.get(i).remove();
+            i++;
         }
         setUpMap();
     }
