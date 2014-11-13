@@ -10,12 +10,17 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="image">Image</string>
+    <string name="take_picture">Take_picture</string>
+    <string name="retake">Retake</string>
+    <string name="confirm">Confirm</string>
     <string name="new_user">New User</string>
     <string name="create_user">Create User</string>
     <string name="title_activity_new_account">NewAccount</string>
     <string name="title_activity_test">test</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_log">LogActivity</string>
+    <string name="title_activity_camera">Camera</string>
     <string name="title_activity_myfootprints">Myfootprints</string>
     <string name="title_activity_pop">PopActivity</string>
     <string name="title_activity_wishlist">WishlistActivity</string>

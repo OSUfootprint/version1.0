@@ -1,18 +1,15 @@
 package app.sunshine.android.example.com.osufootprint20;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import app.sunshine.android.example.com.osufootprint20.R;
 
 public class Camera extends ActionBarActivity {
     private

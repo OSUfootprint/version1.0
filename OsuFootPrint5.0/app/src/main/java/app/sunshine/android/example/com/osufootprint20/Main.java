@@ -47,8 +47,8 @@ public class Main extends ActionBarActivity {
         String username = this.userNamefield.getText().toString();
         String password = this.passwordfield.getText().toString();
         this.dh = new DatabaseHelper(this);
-//        List<String> names = this.dh.selectAll(username, password);
-//        if(names.size() > 0){
+        List<String> names = this.dh.selectAll(username, password);
+        if(names.size() > 0){
 
             Person.getPerson(getApplicationContext());
 
@@ -63,7 +63,7 @@ public class Main extends ActionBarActivity {
 //            bundle.putParcelableArrayList("wish_list",wish_list);
             intent.putExtras(bundle);
             startActivity(intent);
-//        }else{
+        }else{
             // Try again?
             new AlertDialog.Builder(this)
                     .setTitle("Error")
@@ -74,7 +74,7 @@ public class Main extends ActionBarActivity {
                                                     int which) {
                                 }
                             }).show();
-//        }
+        }
 
     }
     public void onClick(View view){

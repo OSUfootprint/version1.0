@@ -1,11 +1,15 @@
 package app.sunshine.android.example.com.osufootprint20;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,40 +58,65 @@ public class DatabaseHelper {
         c.close();
         return person;
     }
-    public List<Person> queryMany() {
-        ArrayList<Person> persons = new ArrayList<Person>();
-        Cursor c = db.rawQuery("select * from Account", null);
-        while (c.moveToNext()) {
-            Person person = new Person(context.getApplicationContext());
-            //person.set_id(c.getInt(c.getColumnIndex("_id")));
-            person.setName(c.getString(c.getColumnIndex("name")));
-            person.setPassword(c.getString(c.getColumnIndex("password")));
-            persons.add(person);
-        }
-        c.close();
-        return persons;
+//    public List<Person> queryMany() {
+//        ArrayList<Person> persons = new ArrayList<Person>();
+//        Cursor c = db.rawQuery("select * from Account", null);
+//        while (c.moveToNext()) {
+//            Person person = new Person(context.getApplicationContext());
+//            //person.set_id(c.getInt(c.getColumnIndex("_id")));
+//            person.setName(c.getString(c.getColumnIndex("name")));
+//            person.setPassword(c.getString(c.getColumnIndex("password")));
+//            persons.add(person);
+//        }
+//        c.close();
+//        return persons;
+//    }
+
+
+//    public void deleteAll(){
+//        this.db.delete(TABLE_NAME,null, null);
+//    }
+//    public List<String> selectAll(String username, String password) {
+//        List<String> list = new ArrayList<String>();
+//        Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name", "password" }, "name = '"+ username +"' AND password= '"+ password+"'", null, null, null, "name desc");
+//        if (cursor.moveToFirst()) {
+//            do {
+//                list.add(cursor.getString(0));
+//                list.add(cursor.getString(1));
+//            } while (cursor.moveToNext());
+//        }
+//        if (cursor != null && !cursor.isClosed()) {
+//            cursor.close();
+//        }
+//        return list;
+//    }
+    public void savePhotp(String name, Bitmap image) {
+        if (image == null) return;
+
+        final ByteArrayOutputStream os = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, os);
+        ContentValues values = new ContentValues();
+        values.put("img",os.toByteArray());
+        db.update(TABLE_NAME,values,"name=?",new String[]{name});
     }
 
-
-    public void deleteAll(){
-        this.db.delete(TABLE_NAME,null, null);
-    }
-    public List<String> selectAll(String username, String password) {
-        List<String> list = new ArrayList<String>();
-        Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name", "password" }, "name = '"+ username +"' AND password= '"+ password+"'", null, null, null, "name desc");
-        if (cursor.moveToFirst()) {
-            do {
-                list.add(cursor.getString(0));
-                list.add(cursor.getString(1));
-            } while (cursor.moveToNext());
+    public Bitmap getPhoto(String name){
+        byte[] blob = new byte[0];
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
+        while(c.moveToNext()){
+            blob = c.getBlob(c.getColumnIndex("img"));
         }
-        if (cursor != null && !cursor.isClosed()) {
-            cursor.close();
-        }
-        return list;
+        Bitmap result = BitmapFactory.decodeByteArray(blob, 0, blob.length);
+        return result;
     }
 
+    //public setFootprints(String name, FootprintQueue footprints)
 
+    //public getFootprints(String name, )
+
+    //public setWishlists(String name, )
+
+    //public getWishlists(string name, )
 
     private static class FootprintOpenHelper extends SQLiteOpenHelper{
         FootprintOpenHelper(Context context){
@@ -96,7 +125,8 @@ public class DatabaseHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db){
-            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, name text, password text)";
+            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, " +
+                    "name text, password text, img BLOB, footprint FootprintQueue, wishlist WishQueue)";
             db.execSQL(createtbl);
         }
 

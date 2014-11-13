@@ -28,8 +28,8 @@ public class NewAccounts extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         //Log.e(TAG, "++NewAccounts created++");
         setContentView(R.layout.activity_new_accounts);
-        newUsername = (EditText) findViewById(R.id.new_username);
-        newPassword = (EditText) findViewById(R.id.new_password);
+        newUsername = (EditText) findViewById(R.id.username);
+        newPassword = (EditText) findViewById(R.id.password);
         passwordConfirm = (EditText) findViewById(R.id.confirm_password);
 
     }

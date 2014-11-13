@@ -1,11 +1,15 @@
 package app.sunshine.android.example.com.osufootprint20;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +91,33 @@ public class DatabaseHelper {
         return list;
     }
 
+    public void savePhotp(String name, Bitmap image) {
+        if (image == null) return;
 
+        final ByteArrayOutputStream os = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, os);
+        ContentValues values = new ContentValues();
+        values.put("img",os.toByteArray());
+        db.update(TABLE_NAME,values,"name=?",new String[]{name});
+    }
+
+    public Bitmap getPhoto(String name){
+        byte[] blob = new byte[0];
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
+        while(c.moveToNext()){
+            blob = c.getBlob(c.getColumnIndex("img"));
+        }
+        Bitmap result = BitmapFactory.decodeByteArray(blob,0,blob.length);
+        return result;
+    }
+
+    //public setFootprints(String name, FootprintQueue footprints)
+
+    //public getFootprints(String name, )
+
+    //public setWishlists(String name, )
+
+    //public getWishlists(string name, )
 
     private static class FootprintOpenHelper extends SQLiteOpenHelper{
         FootprintOpenHelper(Context context){
@@ -96,7 +126,7 @@ public class DatabaseHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db){
-            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, name text, password text)";
+            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, name text, password text, img BLOB)";
             db.execSQL(createtbl);
         }
 
