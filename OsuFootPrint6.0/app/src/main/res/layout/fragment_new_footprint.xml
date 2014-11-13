@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="20dip" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="32dp"
+            android:text="NEW FOOTPRINT"
+            android:textSize="36sp"
+            style="?android:listViewStyle"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:text="Date "
+            android:textSize="20sp"
+            style="?android:listSeparatorTextViewStyle"/>
+        <Button android:id="@+id/new_footprint_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:text="Place "
+            android:textSize="20sp"
+            style="?android:listSeparatorTextViewStyle"/>
+        <Button android:id="@+id/new_footprint_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Select Place"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:text="Activity "
+            android:textSize="20sp"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText android:id="@+id/new_footprint_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="20sp"
+            android:hint="Enter your activity"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:text="Comment "
+            android:textSize="20sp"
+            style="?android:listSeparatorTextViewStyle"/>
+        <EditText android:id="@+id/new_footprint_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="20sp"
+            android:hint="Enter your comment"
+            />
+        <Button android:id="@+id/new_footprint_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Confirm"
+            android:textSize="20sp"
+            android:layout_marginTop="32dp"
+            />
+    </LinearLayout>
+</ScrollView>
+
