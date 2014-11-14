@@ -50,8 +50,6 @@ public class Main extends ActionBarActivity {
         List<String> names = this.dh.selectAll(username, password);
         if(names.size() > 0){
 
-            Person.getPerson(getApplicationContext());
-
             Intent intent = new Intent(Main.this, LoginActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("username",username);

@@ -51,6 +51,7 @@ public class Camera extends ActionBarActivity {
             Bundle extras = cameraIntent.getExtras() ;
             imageBitmap = (Bitmap) extras.get("data");
             Person.getPerson(getApplicationContext()).setImage(imageBitmap);
+            this.dh = new DatabaseHelper(this);
             dh.savePhotp(imageBitmap);
             imageView.setImageBitmap(imageBitmap);
 //            this.dh = new DatabaseHelper(this);

@@ -152,7 +152,7 @@ public class DatabaseHelper {
         @Override
         public void onCreate(SQLiteDatabase db){
             String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, " +
-                    "name text, password text, img BLOB, footprint ArrayList<Footprint>, wishlist ArrayList<MyPlace>, place ArrayList<MyPlace>)";
+                    "name text, password text, img BLOB, footprint text, wishlist text, place text";
             db.execSQL(createtbl);
         }
 
