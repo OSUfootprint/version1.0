@@ -26,6 +26,7 @@ public class Camera extends ActionBarActivity {
         setContentView(R.layout.activity_camera);
         imageView = (ImageView) findViewById(R.id.imageView);
         imageBitmap = BitmapFactory.decodeFile(imageFilePath);
+
     }
 
     public void onClick(View v){

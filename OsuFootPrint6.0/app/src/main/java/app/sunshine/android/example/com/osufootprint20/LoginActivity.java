@@ -15,7 +15,7 @@ import app.sunshine.android.example.com.osufootprint20.R;
 public class LoginActivity extends ActionBarActivity {
 
     private final String TAG = ((Object) this).getClass().getSimpleName();
-    private TextView welcome;
+//    private TextView welcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

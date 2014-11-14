@@ -42,7 +42,8 @@ public class DatabaseHelper {
 
     }
 
-//    public long insertLogInfo(String name, String password){
+
+    //    public long insertLogInfo(String name, String password){
 //        this.insertStmt.bindString(1, name);
 //        this.insertStmt.bindString(2, password);
 //        return this.insertStmt.executeInsert();
@@ -114,7 +115,6 @@ public class DatabaseHelper {
         while(c.moveToNext()){
             blob = c.getBlob(c.getColumnIndex("img"));
         }
-
         c.close();
         Bitmap result = BitmapFactory.decodeByteArray(blob, 0, blob.length);
         Person.getPerson(context.getApplicationContext()).setImage(result);
@@ -145,9 +145,55 @@ public class DatabaseHelper {
         Person.getPerson(context.getApplicationContext()).getFootprint().setMySet(footprints);
     }
 
-    //public setWishlists(String name, )
+    public void setWishlists(){
+        ArrayList<MyPlace> wishlists = new ArrayList<MyPlace>(Person.getPerson(context.getApplicationContext()).getWish().getMySet());
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        Gson gson = new Gson();
+        String wishlist_string = gson.toJson(wishlists,new TypeToken<ArrayList<MyPlace>>(){}.getType());
+        ContentValues values = new ContentValues();
+        values.put("wishlist",wishlist_string);
+        db.update(TABLE_NAME,values,"name=?",new String[]{name});
+    }
 
-    //public getWishlists(string name, )
+    public void getWishlists(){
+        String wishlist_string = null;
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
+        while (c.moveToNext()) {
+            wishlist_string = c.getString(c.getColumnIndex("wishlist"));
+        }
+        if(wishlist_string == null) return;
+        c.close();
+        Gson gson=new Gson();
+        ArrayList<MyPlace> wishlists=gson.fromJson(wishlist_string,new TypeToken<ArrayList<MyPlace>>(){}.getType());
+        Person.getPerson(context.getApplicationContext()).getWish().setMySet(wishlists);
+    }
+
+    public void setPlaces(){
+        ArrayList<MyPlace> placelists = new ArrayList<MyPlace>(Person.getPerson(context.getApplicationContext()).getMyPlace().getMySet());
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        Gson gson = new Gson();
+        String place_string = gson.toJson(placelists,new TypeToken<ArrayList<MyPlace>>(){}.getType());
+        ContentValues values = new ContentValues();
+        values.put("placelists",place_string);
+        db.update(TABLE_NAME,values,"name=?",new String[]{name});
+    }
+
+    public void getPlaces(){
+        String place_string = null;
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
+        while (c.moveToNext()) {
+            place_string = c.getString(c.getColumnIndex("place"));
+        }
+        if(place_string == null) return;
+        c.close();
+        Gson gson=new Gson();
+        ArrayList<MyPlace> placelists=gson.fromJson(place_string,new TypeToken<ArrayList<MyPlace>>(){}.getType());
+        Person.getPerson(context.getApplicationContext()).getMyPlace().setMySet(placelists);
+    }
+
+
 
     private static class FootprintOpenHelper extends SQLiteOpenHelper{
         FootprintOpenHelper(Context context){

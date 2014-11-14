@@ -50,6 +50,7 @@ public class NewFootprintFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fp=new Footprint();
+
         String place=getArguments().getString(SelectPlace.Selected_Place);
         if(place!=null)
             fp.setPlace(place);
@@ -58,6 +59,7 @@ public class NewFootprintFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_new_footprint, parent, false);
+        this.dh = new DatabaseHelper(this.getActivity());
         newDateField = (Button)v.findViewById(R.id.new_footprint_date);
         newDateField.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +138,7 @@ public class NewFootprintFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (resultCode != Activity.RESULT_OK) return;
         if (requestCode == REQUEST_DATE) {
             Date date = (Date)data
@@ -143,6 +146,7 @@ public class NewFootprintFragment extends Fragment {
             fp.setDate(date);
             SimpleDateFormat sdf = new SimpleDateFormat("E MMM.d yyyy");
             newDateField.setText(sdf.format(fp.getDate()));
+
         }
         else if (requestCode == REQUEST_PLACE) {
             String place = data
@@ -150,6 +154,7 @@ public class NewFootprintFragment extends Fragment {
             fp.setPlace(place);
             newPlaceField.setText(fp.getPlace());
         }
+
     }
 
 }
