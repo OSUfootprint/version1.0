@@ -9,6 +9,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -114,27 +117,27 @@ public class DatabaseHelper {
         return result;
     }
 
-    public void setFootprints() throws JSONException {
-        ArrayList footprints=new ArrayList(Person.getPerson(context.getApplicationContext()).getFootprint().getMySet());
+    public void setFootprints() {
+        ArrayList<Footprint> footprints=new ArrayList<Footprint>(Person.getPerson(context.getApplicationContext()).getFootprint().getMySet());
         String name = Person.getPerson(context.getApplicationContext()).getName();
-        JSONObject json = new JSONObject();
-        json.put("footprint",new JSONArray(footprints));
-        String footprint = json.toString();
+        Gson gson=new Gson();
+        String footprint_string = gson.toJson(footprints,new TypeToken<ArrayList<Footprint>>(){}.getType());
         ContentValues values = new ContentValues();
-        values.put("footprint",footprint);
+        values.put("footprint",footprint_string);
         db.update(TABLE_NAME,values,"name=?",new String[]{name});
     }
 
-    public String getFootprints(){
+    public void getFootprints(){
         String footprint_string = null;
         String name = Person.getPerson(context.getApplicationContext()).getName();
         Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
         while (c.moveToNext()) {
             footprint_string = c.getString(c.getColumnIndex("footprint"));
-
         }
         c.close();
-        return footprint_string;
+        Gson gson=new Gson();
+        ArrayList<Footprint> footprints=gson.fromJson(footprint_string,new TypeToken<ArrayList<Footprint>>(){}.getType());
+        Person.getPerson(context.getApplicationContext()).getFootprint().setMySet(footprints);
     }
 
     //public setWishlists(String name, )

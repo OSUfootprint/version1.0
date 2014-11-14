@@ -27,6 +27,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -123,15 +126,8 @@ public class
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footprint_map);
-        String footprint_string = dh.getFootprints();
-        try {
-            JSONObject json = new JSONObject(footprint_string);
-            ArrayList footprint = json.optJSONArray("footprint");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        dh.getFootprints();
 
-        Person.getPerson(getApplicationContext()).getFootprint().setMySet(footprint);
         newFootprintButton=(Button)findViewById(R.id.new_footprint_button);
         newFootprintButton.setOnClickListener(new View.OnClickListener() {
             @Override

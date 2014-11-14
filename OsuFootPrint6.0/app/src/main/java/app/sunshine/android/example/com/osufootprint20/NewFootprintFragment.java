@@ -123,12 +123,7 @@ public class NewFootprintFragment extends Fragment {
                 else {
                     Person.getPerson(getActivity().getApplicationContext()).getFootprint().insert(fp);
                     Person.getPerson(getActivity().getApplicationContext()).getMyPlace().TimesChanged(fp.getPlace());
-                    try {
-                        dh.setFootprints();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
+                    dh.setFootprints();
                     Intent result=new Intent();
                     getActivity().setResult(getActivity().RESULT_OK,result);
                     getActivity().finish();
