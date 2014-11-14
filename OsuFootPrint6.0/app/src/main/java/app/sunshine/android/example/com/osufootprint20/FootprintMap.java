@@ -28,6 +28,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -41,6 +45,7 @@ public class
         GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener {
     private PriorityQueue mpq;
+    private DatabaseHelper dh;
 
     /** Demonstrates customizing the info window and/or its contents. */
     private void init() {
@@ -118,6 +123,15 @@ public class
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footprint_map);
+        String footprint_string = dh.getFootprints();
+        try {
+            JSONObject json = new JSONObject(footprint_string);
+            ArrayList footprint = json.optJSONArray("footprint");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Person.getPerson(getApplicationContext()).getFootprint().setMySet(footprint);
         newFootprintButton=(Button)findViewById(R.id.new_footprint_button);
         newFootprintButton.setOnClickListener(new View.OnClickListener() {
             @Override

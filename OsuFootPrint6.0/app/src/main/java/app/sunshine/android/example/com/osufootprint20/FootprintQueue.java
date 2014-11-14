@@ -39,6 +39,10 @@ public class FootprintQueue {
     public PriorityQueue getMySet() {
         return mySet;
     }
+    public void setMySet(ArrayList footprints) {
+        mySet=new PriorityQueue<Footprint>(footprints);
+
+    }
     public void insert(Footprint fp) {
         mySet.add(fp);
     }

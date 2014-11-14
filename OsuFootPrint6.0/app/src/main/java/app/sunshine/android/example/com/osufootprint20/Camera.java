@@ -39,6 +39,7 @@ public class Camera extends ActionBarActivity {
 //                startActivityForResult(recameraIntent, IMAGE_CAPTURED);
 //                break;
             case R.id.camera_confirm:
+
                 finish();
                 break;
 
@@ -49,6 +50,8 @@ public class Camera extends ActionBarActivity {
         if (resultCode == RESULT_OK && requestCode == IMAGE_CAPTURED) {
             Bundle extras = cameraIntent.getExtras() ;
             imageBitmap = (Bitmap) extras.get("data");
+            Person.getPerson(getApplicationContext()).setImage(imageBitmap);
+            dh.savePhotp(imageBitmap);
             imageView.setImageBitmap(imageBitmap);
 //            this.dh = new DatabaseHelper(this);
 //            dh.savePhotp(username,imageBitmap);

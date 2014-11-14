@@ -1,6 +1,7 @@
 package app.sunshine.android.example.com.osufootprint20;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Person {
     private int _id;
     private String name;
     private String password;
+    private Bitmap image;
     private FootprintQueue mFootprintQueue;
     private MyPlaceQueue mPlaceQueue;
     private WishQueue mWishQueue;
@@ -83,4 +85,11 @@ public class Person {
         this.password = password;
     }
 
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 }

@@ -3,6 +3,7 @@ import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -24,6 +25,11 @@ public class MyPlaceQueue {
 
     public PriorityQueue getMySet() {
         return mySet;
+    }
+
+    public void setMySet(ArrayList place) {
+        mySet=new PriorityQueue<MyPlace>(place);
+
     }
 
     public void insert(MyPlace mp) {

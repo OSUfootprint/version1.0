@@ -46,6 +46,10 @@ public class WishQueue {
         return null;
     }
 
+    public void setMySet(ArrayList wish) {
+        mySet=new ArrayList<MyPlace>(wish);
+    }
+
     public void deleteWish(String placeName) {
 
         int i=0;

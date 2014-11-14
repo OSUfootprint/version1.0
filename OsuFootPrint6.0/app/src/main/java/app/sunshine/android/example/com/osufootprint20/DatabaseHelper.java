@@ -9,6 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +45,7 @@ public class DatabaseHelper {
 //        return this.insertStmt.executeInsert();
 //    }
     public void add(Person person){
-        db.execSQL("insert into Account VALUES (null, ?, ?)",new Object[]{person.getName(), person.getPassword()});
+        db.execSQL("insert into Account VALUES (null, ?, ?,null,null,null,null)",new Object[]{person.getName(), person.getPassword()});
     }
     public void delete(String name){
         db.execSQL("delete from Account where name=?", new Object[]{name});
@@ -50,7 +54,7 @@ public class DatabaseHelper {
         Person person = new Person(context.getApplicationContext());
         Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
         while (c.moveToNext()) {
-            //person.set_id(c.getInt(c.getColumnIndex("_id")));
+            person.set_id(c.getInt(c.getColumnIndex("_id")));
             person.setName(c.getString(c.getColumnIndex("name")));
             person.setPassword(c.getString(c.getColumnIndex("password")));
             //person.setFootprints(c.g(c.getColumnIndex("footprints"));
@@ -73,26 +77,26 @@ public class DatabaseHelper {
 //    }
 
 
-//    public void deleteAll(){
-//        this.db.delete(TABLE_NAME,null, null);
-//    }
-//    public List<String> selectAll(String username, String password) {
-//        List<String> list = new ArrayList<String>();
-//        Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name", "password" }, "name = '"+ username +"' AND password= '"+ password+"'", null, null, null, "name desc");
-//        if (cursor.moveToFirst()) {
-//            do {
-//                list.add(cursor.getString(0));
-//                list.add(cursor.getString(1));
-//            } while (cursor.moveToNext());
-//        }
-//        if (cursor != null && !cursor.isClosed()) {
-//            cursor.close();
-//        }
-//        return list;
-//    }
-    public void savePhotp(String name, Bitmap image) {
+    public void deleteAll(){
+        this.db.delete(TABLE_NAME,null, null);
+    }
+    public List<String> selectAll(String username, String password) {
+        List<String> list = new ArrayList<String>();
+        Cursor cursor = this.db.query(TABLE_NAME, new String[] { "name", "password" }, "name = '"+ username +"' AND password= '"+ password+"'", null, null, null, "name desc");
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(0));
+                list.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+        }
+        return list;
+    }
+    public void savePhotp( Bitmap image) {
         if (image == null) return;
-
+        String name = Person.getPerson(context.getApplicationContext()).getName();
         final ByteArrayOutputStream os = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.PNG, 100, os);
         ContentValues values = new ContentValues();
@@ -110,9 +114,28 @@ public class DatabaseHelper {
         return result;
     }
 
-    //public setFootprints(String name, FootprintQueue footprints)
+    public void setFootprints() throws JSONException {
+        ArrayList footprints=new ArrayList(Person.getPerson(context.getApplicationContext()).getFootprint().getMySet());
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        JSONObject json = new JSONObject();
+        json.put("footprint",new JSONArray(footprints));
+        String footprint = json.toString();
+        ContentValues values = new ContentValues();
+        values.put("footprint",footprint);
+        db.update(TABLE_NAME,values,"name=?",new String[]{name});
+    }
 
-    //public getFootprints(String name, )
+    public String getFootprints(){
+        String footprint_string = null;
+        String name = Person.getPerson(context.getApplicationContext()).getName();
+        Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
+        while (c.moveToNext()) {
+            footprint_string = c.getString(c.getColumnIndex("footprint"));
+
+        }
+        c.close();
+        return footprint_string;
+    }
 
     //public setWishlists(String name, )
 
@@ -126,7 +149,7 @@ public class DatabaseHelper {
         @Override
         public void onCreate(SQLiteDatabase db){
             String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, " +
-                    "name text, password text, img BLOB, footprint FootprintQueue, wishlist WishQueue)";
+                    "name text, password text, img BLOB, footprint ArrayList<Footprint>, wishlist ArrayList<MyPlace>, place ArrayList<MyPlace>)";
             db.execSQL(createtbl);
         }
 

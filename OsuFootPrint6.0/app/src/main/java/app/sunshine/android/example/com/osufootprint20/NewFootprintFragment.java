@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -26,6 +28,7 @@ public class NewFootprintFragment extends Fragment {
     public static final String DEFAULT_PLACE ="app.sunshine.android.example.com.osufootprint20.default_place";
 
     private Footprint fp;
+    private DatabaseHelper dh;
 
     Button newDateField;
     Button newPlaceField;
@@ -120,6 +123,11 @@ public class NewFootprintFragment extends Fragment {
                 else {
                     Person.getPerson(getActivity().getApplicationContext()).getFootprint().insert(fp);
                     Person.getPerson(getActivity().getApplicationContext()).getMyPlace().TimesChanged(fp.getPlace());
+                    try {
+                        dh.setFootprints();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                     Intent result=new Intent();
                     getActivity().setResult(getActivity().RESULT_OK,result);
