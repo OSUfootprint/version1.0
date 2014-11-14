@@ -49,6 +49,10 @@ public class Main extends ActionBarActivity {
         this.dh = new DatabaseHelper(this);
         List<String> names = this.dh.selectAll(username, password);
         if(names.size() > 0){
+            dh.getFootprints();
+            dh.getPhoto();
+            Person.getPerson(this.getApplicationContext()).setName(username);
+            Person.getPerson(this.getApplicationContext()).setPassword(password);
 
             Intent intent = new Intent(Main.this, LoginActivity.class);
             Bundle bundle = new Bundle();
@@ -60,6 +64,7 @@ public class Main extends ActionBarActivity {
 //            bundle.putParcelableArrayList("foorprint_list",footprint_list);
 //            bundle.putParcelableArrayList("wish_list",wish_list);
             intent.putExtras(bundle);
+
             startActivity(intent);
         }else{
             // Try again?

@@ -107,14 +107,18 @@ public class DatabaseHelper {
         db.update(TABLE_NAME,values,"name=?",new String[]{name});
     }
 
-    public Bitmap getPhoto(String name){
+    public void getPhoto(){
         byte[] blob = new byte[0];
+        String name = Person.getPerson(context.getApplicationContext()).getName();
         Cursor c = db.rawQuery("select * from Account where name=?", new String[] { name + "" });
         while(c.moveToNext()){
             blob = c.getBlob(c.getColumnIndex("img"));
         }
+
+        c.close();
         Bitmap result = BitmapFactory.decodeByteArray(blob, 0, blob.length);
-        return result;
+        Person.getPerson(context.getApplicationContext()).setImage(result);
+
     }
 
     public void setFootprints() {
@@ -134,6 +138,7 @@ public class DatabaseHelper {
         while (c.moveToNext()) {
             footprint_string = c.getString(c.getColumnIndex("footprint"));
         }
+        if(footprint_string == null) return;
         c.close();
         Gson gson=new Gson();
         ArrayList<Footprint> footprints=gson.fromJson(footprint_string,new TypeToken<ArrayList<Footprint>>(){}.getType());
@@ -151,8 +156,7 @@ public class DatabaseHelper {
 
         @Override
         public void onCreate(SQLiteDatabase db){
-            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, " +
-                    "name text, password text, img BLOB, footprint text, wishlist text, place text";
+            String createtbl = "CREATE TABLE Account (_id integer primary key autoincrement, name text, password text, img BLOB, footprint text, wishlist text, place text)";
             db.execSQL(createtbl);
         }
 

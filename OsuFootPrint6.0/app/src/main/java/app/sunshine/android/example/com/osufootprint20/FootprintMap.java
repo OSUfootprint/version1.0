@@ -127,6 +127,7 @@ public class
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_footprint_map);
         this.dh = new DatabaseHelper(this);
+        dh.setFootprints();
         dh.getFootprints();
 
         newFootprintButton=(Button)findViewById(R.id.new_footprint_button);

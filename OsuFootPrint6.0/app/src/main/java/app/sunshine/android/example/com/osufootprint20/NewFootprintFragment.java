@@ -124,6 +124,7 @@ public class NewFootprintFragment extends Fragment {
                     Person.getPerson(getActivity().getApplicationContext()).getFootprint().insert(fp);
                     Person.getPerson(getActivity().getApplicationContext()).getMyPlace().TimesChanged(fp.getPlace());
                     dh.setFootprints();
+
                     Intent result=new Intent();
                     getActivity().setResult(getActivity().RESULT_OK,result);
                     getActivity().finish();
