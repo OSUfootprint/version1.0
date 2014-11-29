@@ -13,7 +13,7 @@
         android:text="MY FOOTPRINTS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/username_textview"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="footprint1"
         android:onClick="onClick"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/username_textview"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="91dp"
@@ -47,6 +47,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textView" />
+        android:layout_toRightOf="@+id/username_textview" />
 
 </RelativeLayout>

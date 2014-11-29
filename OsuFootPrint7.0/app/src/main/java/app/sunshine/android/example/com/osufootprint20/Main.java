@@ -87,9 +87,11 @@ public class Main extends ActionBarActivity {
             case R.id.Login_main:
 //                Intent intent_logmenu = new Intent("android.intent.action.LogActivity");
 //                startActivity(intent_logmenu);
+                Log.e(TAG,"++login_main!!!++");
                 checkLogin();
                 break;
             case R.id.new_user_button:
+                Log.e(TAG,"++new user!!!!++");
                 Intent intent_new_user = new Intent("android.intent.action.NewAccountActivity");
                 startActivity(intent_new_user);
 
