@@ -65,10 +65,7 @@ public class LoginActivity extends ActionBarActivity {
                 Intent intent_popfootprints = new Intent("android.intent.action.PopfootprintActivity");
                 startActivity(intent_popfootprints);
                 break;
-            case R.id.log_out:
-                Intent intent_menu = new Intent("android.intent.action.MAIN");
-                startActivity(intent_menu);
-                break;
+
         }
     }
 
